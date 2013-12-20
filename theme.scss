@@ -493,6 +493,9 @@ nav {
   .pc {
     display: block;
     @include border-radius-bottom-left(5px);
+    @include border-radius-top-left(0px);
+    @include border-radius-top-right(0px);
+    @include border-radius-bottom-right(0px);
     font-size: 11px;
     line-height: 20px;
     background-color: $theme-color-3;
