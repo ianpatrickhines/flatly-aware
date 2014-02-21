@@ -826,7 +826,7 @@ ul#page-stream {
 .header-container {
   /* padding-bottom: 40px; */
   min-height: 120px;
-  background: url($header-texture) repeat-x $header-color;
+  background: url($header-texture) repeat-x $theme-color-1;
   border-top: 4px solid $theme-color-3;
 }
 
@@ -1843,4 +1843,23 @@ input:focus, textarea:focus {
 // Make forms & leaderboards have proper background color
 .form-wrap, .people-list.odd, .pagination .active, .pagination a:hover, .table-striped tbody > tr:nth-child(odd) > td {
   background-color: $theme-color-7 !important;
+}
+
+// NationBuilder logo
+
+.nationbuilder-logo {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.nationbuilder-logo img {
+  opacity: .4;
+}
+
+.nb-logo img {
+  max-width: 30px;
+}
+
+.iph-logo img {
+  max-width: 60px;
 }
