@@ -64,12 +64,6 @@
         </div>
         {% endif %}
 
-        {% if page.features_count > 0 and page.slug != "home" %}
-          <div class="width-container">
-           {% include "features" %}
-          </div>
-        {% endif %}
-
         <div class="main-container" id="middle">
           {% if page.slug == "home" %}
           {% yield %}

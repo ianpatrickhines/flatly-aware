@@ -4,6 +4,12 @@
 
     {{ content_for_notifications }}
 
+    {% if page.features_count > 0 and page.slug != "home" %}
+    <div class="features-container">
+     {% include "features" %}
+    </div>
+    {% endif %}
+
     <div class="content-{{ request.template  | replace: '_', '-' }}">
       {% yield %}
     </div>
