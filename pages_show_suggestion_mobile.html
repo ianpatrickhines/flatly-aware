@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -13,7 +12,7 @@
 {% endif %}
 
 {% if page.headline.size > 0 %}
-	
+
 	<div id="headline">
 
 		<h2>{{ page.headline }}</h2>
@@ -26,16 +25,16 @@
 {% endif %}
 
 <div id="content">
-	
+
 	  <div id="intro">
 	    {% if page.suggestion.content.size > 0 %}
 	      {{ page.suggestion.content }}
 	    {% else %}
 	      <p>
 	    {% endif %}
-	
+
 			{% if page.suggestion.is_answered? %}
-				<div class="answer"> 
+				<div class="answer">
 					<div>
 						<b>
 							Official response from {{ page.suggestion.answer_author.published_name_linked }}
@@ -55,7 +54,7 @@
 		      {{ page.suggestion.tag_list_html }}
 		  </div>
 		</div>
-		
+
 		{% if page.tags_count > 0 %}
 			<div id="page_tags">
 				{% include "page_tags" with page %}
@@ -73,11 +72,11 @@
 
 		{% if page.show_stream? %}
 			{% if page.public_activities_count > 0 or page.is_commentable? %}
-				</div> <!-- end content_container_top -->	
+				</div> <!-- end content_container_top -->
 			{% endif %}
 		  {% include "page_stream" %}
 			{% else %}
-				</div> <!-- end content_container -->	
-		{% endif %}	
-		
+				</div> <!-- end content_container -->
+		{% endif %}
+
 </div>

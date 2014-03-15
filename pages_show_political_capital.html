@@ -1,11 +1,10 @@
-{% include "breadcrumbs" %}
 
 {% if page.headline.size > 0 %}
 <h2 class="headline">{{ page.headline }}</h2>
 {% endif %}
 
 <div id="content">
-  
+
   <div class="stat-boxes clearfix">
 
     <div class="stat-box">
@@ -59,5 +58,5 @@
   {% endif %}
 
   {{ request.current_signup.capitals | paginate prev_label: "&laquo;" next_label: "&raquo;" }}
-  
+
 </div>

@@ -1,7 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
-
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
 		<div class="content_container_top" style="overflow: visible;">
@@ -19,11 +17,11 @@
 {% endif %}
 
 <div id="content">
-	
+
 	<div class="padtop padbottom">
 	  <iframe src="https://register.rockthevote.com/registrants/new?partner={{ page.voter_registration.rtv_id }}&source=embed-rtv234x60v1" width="615" height="800"></iframe>
 	</div>
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
@@ -38,13 +36,13 @@
 	</div>
 
 	</div>
-	
+
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
-	{% endif %}	
+			</div> <!-- end content_container -->
+	{% endif %}
 </div>

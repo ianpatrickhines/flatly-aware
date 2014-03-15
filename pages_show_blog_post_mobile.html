@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -14,13 +13,13 @@
 
 <div id="headline">
 	<h2>{{ page.headline }}</h2>
-	
+
 	{% if page.has_author? %}
 		<div class="padtopless">
 			{% include "page_byline" %}
 		</div>
 	{% endif %}
-	
+
 </div>
 
 	<div id="intro">
@@ -28,13 +27,13 @@
 		{{ page.blog_post.content_full }}
 		</div>
 	</div>
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
 		</div>
 	{% endif %}
-	
+
 	<div class="padbottom padtop">
 		<div id="like_page">
 			<b>Do you like this post?</b>
@@ -44,11 +43,11 @@
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
-		</div> <!-- end content_container_top -->	
+		</div> <!-- end content_container_top -->
 	{% endif %}
   {% include "page_stream" %}
 	{% else %}
-		</div> <!-- end content_container -->	
+		</div> <!-- end content_container -->
 {% endif %}
 
-</div>	
+</div>

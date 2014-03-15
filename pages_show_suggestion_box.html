@@ -1,47 +1,47 @@
-{% include "breadcrumbs" %}
+
 
 {% if page.headline.size > 0 %}
 <h2 class="headline">{{ page.headline }}</h2>
 {% endif %}
 
 <div id="content">
-  
+
   {% if page.suggestion_box.content.size > 0 %}
   <div id="intro" class="intro">
     {{ page.suggestion_box.content }}
   </div>
   {% endif %}
-  
-  
+
+
   <div class="padbottom">
-    
+
     <div class="form-wrap">
       <div class="form">
-        
+
           {% form_for suggestion_page %}
-          
+
           <div class="form-errors">{% error_messages_for suggestion_page %}</div>
-          
+
           <div id="suggestion-page-page-headline-input" class="suggestion-headline">
             {% text_field "page_headline", class:"text", placeholder:"Add your suggestion", required: "required" %}
           </div>
-          
+
           <div id="suggestion-page-form-expanded" class="suggestion-page-form-expanded">
             <div class="padtopmore">
               {% text_area "content_editable" %}
             </div>
-            
+
             {% if page.suggestion_box.is_image? %}
             <p><label for="suggestion_page_image">Upload a picture ({% if page.suggestion_box.require_image? == false %}optional, {% endif %}600px wide)</label><br/>{% file_field "image", class:"file" %}</p>
             {% endif %}
-            
-            
+
+
             <div class="padtop">
               {% submit_tag "Post", class:"submit-button" %}
               <div class="form-submit"></div>
             </div>
           </div>
-          
+
           {% endform_for %}
 
       </div>
@@ -52,14 +52,14 @@
       {% endunless %}
     </div>
   </div>
-  
+
   <div class="padtopless padbottom">
     <ul class="tag-list">
       <li class="{% if request.url_path == page.url or request.url_path == '/' + page.slug %}current{% endif %}"><a href="{{ page.url }}">Most recent</a></li>
       {% capture alphabetical_url %}/{{ page.slug }}/alphabetical{% endcapture %}
       <li class="{% if request.url_path == alphabetical_url %}current{% endif %}"><a href="{{ alphabetical_url }}">Alphabetical</a></li>
       {% for tag_name in page.suggestion_box.tag_names %}
-      {% capture tag_url %}/{{ page.slug }}/tags/{{ tag_name }}{% endcapture %}			  
+      {% capture tag_url %}/{{ page.slug }}/tags/{{ tag_name }}{% endcapture %}
       <li class="{% if request.url_path == tag_url %}current{% endif %}"><a href="{{ tag_url }}">{{ tag_name | capitalize }}</a></li>
       {% endfor %}
     </ul>

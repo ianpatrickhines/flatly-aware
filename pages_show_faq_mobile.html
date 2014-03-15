@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -25,7 +24,7 @@
 	    {{ page.faq.content }}
 	  </div>
 	{% endif %}
-	
+
 		<ul class="question_list">
 			{% for child in page.children %}
 			{% if child.type_name == 'Question' %}
@@ -34,14 +33,14 @@
 			{% endfor %}
 		</ul>
 		<hr />
-	
+
 	<div class="faq" id="faq_{{ page.id }}">
 	{% for child in page.children %}
 		<div class="page_excerpt" id="question_page_{{ child.id }}">
-	  
+
 			{% if child.type_name == 'Question' %}
 			<h3><a href="{{ child.url }}">{{ child.headline }}</a></h3>
-		
+
 			<div class="excerpt">
 				{% if child.question.content.size > 0 %}
 					{{ child.question.content }}
@@ -51,12 +50,12 @@
 				{% endif %}
 			</div>
 			{% endif %}
-		
+
 			<hr />
 		</div>
 	{% endfor %}
 	</div>
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
@@ -71,13 +70,13 @@
 	</div>
 
 	</div>
-	
+
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
-	{% endif %}	
+			</div> <!-- end content_container -->
+	{% endif %}
 </div>

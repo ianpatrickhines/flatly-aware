@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -19,7 +18,7 @@
 {% endif %}
 
 <div id="content">
-	
+
 	{% if page.donation.content.size > 0 %}
 		 <div id="intro">
 			{{ page.donation.content }}
@@ -28,7 +27,7 @@
 
 	{% if page.donation.show_recent_donor? %}
 	  {% if page.most_recent_donation %}
-		
+
 	      <p><b>Who's donating:</b>
 	      <a href="{{ page.most_recent_donation.signup.profile_url }}">{{ page.most_recent_donation.signup.published_name_linked }}</a> from {{ page.most_recent_donation.signup.address.location }} donated.  Thank you!</p>
 	  {% endif %}
@@ -72,7 +71,7 @@
 	    </div>
 
 	   <div class="horizontalgoal">GOAL: {{ page.donation.donor_goal }} DONORS</div>
-  
+
 	{% endif %}
 
 	{% form_for donation autocomplete:off %}
@@ -81,17 +80,17 @@
 		<div class="form">
 
 	    <div class="form_errors">
-		
+
 				{% error_messages_for donation %}
-				
-			</div>			
-		
+
+			</div>
+
 			{% if page.donation.has_merchant_account? == false %}
 					<p><span class="red"><b>No bank account:</b> This page will not work until you add a bank account</span></p>
 			{% elsif page.donation.merchant_account.is_test_mode? %}
 					<p><span class="red"><b>Testing mode:</b> Transactions will not be processed. Use your regular credit card to test, you will not actually be charged.</span></p>
 			{% endif %}
-		
+
 			<table cellpadding="0" cellspacing="0">
 				<tr height="10"></tr>
 				<tr>
@@ -135,10 +134,10 @@
 					<tr height="10"></tr>
 						<tr>
 							<td>{% check_box "email_opt_in" %} Send me email updates</td>
-						</tr>			
+						</tr>
 
-			    {% if page.donation.merchant_account.is_employer_and_occupation_required? %}		
-	  			
+			    {% if page.donation.merchant_account.is_employer_and_occupation_required? %}
+
 						<tr height="10"></tr>
 	  					<tr>
 	  						<td><label for="donation_employer">Employer</label><br>{% text_field "employer", class:"text" %}</td>
@@ -147,9 +146,9 @@
 							<tr>
 	  						<td><label for="donation_occupation">Occupation</label><br>{% text_field "occupation", class:"text" %}</td>
 	  					</tr>
-	
+
 						{% if page.donation.merchant_account.is_employer_address_required? %}
-						
+
 							<tr height="10"></tr>
 								<tr>
 									<td><label for="donation_work_address_country">Employer Country</label><br>{% collection_select "work_address.country_code", page.donation.countries, "code", "name", class:"select" %}</td>
@@ -173,9 +172,9 @@
 									<tr>
 										<td><label for="donation_work_address_zip">Postal code</label><br>{% text_field "work_address.zip", class:"text" %}</td>
 									</tr>
-							
+
 						{% elsif page.donation.merchant_account.is_employer_city_required? %}
-						
+
 							<tr height="10"></tr>
 								<tr>
 									<td><label for="donation_work_address_country">Employer Country</label><br>{% collection_select "work_address.country_code", page.donation.countries, "code", "name", class:"select" %}</td>
@@ -192,7 +191,7 @@
 									<td><label for="donation_work_address_zip">Postal code</label><br>{% text_field "work_address.zip", class:"text" %}</td>
 								</tr>
 							</table>
-						
+
 						{% endif %}
             {% if page.donation.merchant_account.is_corporate_contribution_required? %}
               <p><label for="donation_is_corporate_contribution">{% check_box "is_corporate_contribution", class:"checkbox" %} This is a contribution from a business.</label></p>
@@ -200,7 +199,7 @@
 						<p>
 	  				Law requires we ask for your employer and occupation.  If you don't have an employer or are retired, put N/A, and if you are self-employed put "self-employed" in employer and describe your occupation.</p>
 					{% endif %}
-		
+
 			    {% if page.donation.merchant_account.is_taxable? %}
 					  <p>Contributions are <i>not</i> tax deductible.</p>
 					{% else %}
@@ -220,7 +219,7 @@
 									{% endif %}
 								{% endfor %}
 								{{ request.current_order.form_amount_options }}
-  						  <a href="{{ page.donation.clear_order_url }}">Clear order</a>								
+  						  <a href="{{ page.donation.clear_order_url }}">Clear order</a>
 							{% else %}
 								{{ page.donation.form_amount_options }}
 							{% endif %}</td>
@@ -244,7 +243,7 @@
   							<td><label for="donation_card_verification">Security code (on back)</label><br>{% text_field "card_verification", class:"text" %}</td>
   						</tr>
 					{% endif %}
-	
+
 		      {% if page.donation.merchant_account.has_contribution_rules? %}
 						<tr height="10"></tr>
 						<tr>
@@ -256,24 +255,24 @@
 							<td><label for="donation_is_confirmed">{% check_box "is_confirmed", class:"checkbox" %} I confirm that the above statements are true and accurate.</label></td>
 						</tr>
 					{% endif %}
-					
+
 					{% if page.donation.merchant_account.is_de? %}
 						<tr height="10"></tr>
 						<tr>
 							<td><label for="donation_is_de_confirmed">{% check_box "is_de_confirmed", class:"checkbox" %}
-							I agree to the Democracy Engine <a href="http://www.democracyengine.com/subscriber_tos" target="_new">Terms of Service</a> 
+							I agree to the Democracy Engine <a href="http://www.democracyengine.com/subscriber_tos" target="_new">Terms of Service</a>
 							and <a href="http://www.democracyengine.com/subscriber_privacy_policy" target="_new">Privacy Policy</a>. You will not receive any emails from them, they just deliver your donation to us.
 						</label></td>
 					</tr>
 					{% endif %}
-				
+
 					{% if site.ask_to_publish_to_stream? %}
 					<tr height="10"></tr>
 					<tr>
 						<td><label for="donation_is_private">{% check_box "is_private", class:"checkbox" %} Don't publish my donation on the website.</label></td>
 					</tr>
 					{% endif %}
-			
+
 					  {% if page.donation.has_merchant_account? and page.donation.merchant_account.is_paypal_express? %}
   					  <tr height="10"></tr>
     						<tr>
@@ -291,28 +290,28 @@
 					  		<td><div class="form_submit"></div></td>
 							</tr>
 					</table>
-	
+
 		</div>
 		</div>
-	
+
 	{% endform_for %}
-	
-</div>	
+
+</div>
 
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
 		</div>
 	{% endif %}
-	
+
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
+			</div> <!-- end content_container -->
 	{% endif %}
-	
+
 	</div>
 </div>

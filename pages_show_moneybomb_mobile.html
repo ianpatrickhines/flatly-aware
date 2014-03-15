@@ -1,10 +1,9 @@
 	<!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="/stylesheets/countdown_ie.css" media="all" />
 	<![endif]-->
-	
+
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -29,7 +28,7 @@
 	    {{ page.moneybomb.content }}
 	  </div>
 	{% endif %}
-	
+
 	{% if page.moneybomb.has_start_at? and page.moneybomb.is_active? == false and page.moneybomb.is_past? == false %}
 	<div class="event_detail">
 	<div class="subhead" style="text-transform: uppercase;">COUNTDOWN TO {{ page.moneybomb.local_start_at | moneybomb_time }}</div>
@@ -94,42 +93,42 @@
 	{% endif %}
 
 	{% if page.moneybomb.is_pledged? %}
-	
+
 			<div class="one_column">
-	
+
 				{% form_for pledge %}
-			
+
 				  <div class="form_wrap">
 					<div class="form">
 
 	          <div class="padtop"><h3>Thank you for pledging!</h3></div>
 
 						<div class="form_errors">{% error_messages_for pledges %}</div>
-			
+
 						<p><label for="pledge_content">Change your pledge amount</label><br/>{{ page.moneybomb.form_amount_options }}</p>
-	
+
 	            {% if page.is_commentable? %}
-								{% submit_tag "Save pledge", class:"submit-button" %} &nbsp; 
+								{% submit_tag "Save pledge", class:"submit-button" %} &nbsp;
 							{% endif %}
-						
+
 							<div class="destroy_link padtop">
 								{{ page.moneybomb.current_pledge | delete_link message: "Cancel pledge" }}
 							</div>
-						
+
 							<div class="form_submit"></div>
-					
+
 					</div>
 
 				{% endform_for %}
 			</div>
 			</div>
-	
+
 	{% else %}
-	
+
 		<div class="padbottom one_column">
 
 			{% form_for pledge %}
-	
+
 		    <div class="form_wrap">
 				<div class="form">
 
@@ -153,11 +152,11 @@
 	    	  {% endif %}
 
 					<div class="form_errors">{% error_messages_for pledge %}</div>
-	
+
 					<div class="padtop padbottom">
 					{{ page.moneybomb.form_amount_options }}
 					</div>
-	
+
 		      <table>
 		  		{% if request.sorta_logged_in? == false or request.current_signup.has_name? == false %}
 		  		  <tr height="10"></tr>
@@ -182,41 +181,41 @@
 	    		{% endif %}
 
 	      	{% if request.sorta_logged_in? == false or request.current_signup.has_full_address? == false %}
-	      		<tr height="10"></tr>	
+	      		<tr height="10"></tr>
 							<tr><td><label for="pledge_submitted_address">Address (Street, City, State, Postal code)</label><br>{% text_field "submitted_address", class:"text" %}</td></tr>
 	      	{% endif %}
-					
+
 					{% if site.ask_to_publish_to_stream? %}
 						<tr height="10"></tr>
 							<tr><td><label for="pledge_is_private">{% check_box "is_private", class:"checkbox" %} Don't publish this on the website</label></td><tr>
 					{% endif %}
-				
+
     		  {% if request.sorta_logged_in? == false or request.current_signup.is_volunteer == false %}
 						<tr height="10"></tr>
     		    	<tr><td><label for="pledge_is_volunteer">{% check_box "is_volunteer", class:"checkbox" %} I want to volunteer</label></td></tr>
-	        {% endif %}				
+	        {% endif %}
 
 				<tr height="10"></tr>
 					<tr><td>{% submit_tag "Add pledge", class:"submit-button" %}</td></tr>
-					
+
 					<div class="form_submit"></div>
 				</table>
-				
+
 				</div>
 
 			{% endform_for %}
-	
+
 			{% if page.text_keyword_instructions.size > 0 %}
 				<div class="padbottom padtopmore">
 					or {{ page.text_keyword_instructions }}
 				</div>
 			{% endif %}
-	
+
 		</div>
 		</div>
-	
+
 	{% endif %}
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
@@ -229,23 +228,23 @@
 			{% include "like_page_mobile" %}
 		</div>
 	</div>
-	
+
 	</div>
-	
+
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
-	{% endif %}	
+			</div> <!-- end content_container -->
+	{% endif %}
 </div>
 <script type="text/javascript" src="/javascripts/jquery.countdown.min.js"></script>
 <script type="text/javascript">
 $j(function () {
 	$j('#pre_countdown').countdown({
-		until: +{{ page.moneybomb.seconds_until }}, 
+		until: +{{ page.moneybomb.seconds_until }},
 		format: 'YDHMS',
 		layout: '<div id="t7_timer">'+
 					'<div id="t7_vals">'+
@@ -264,7 +263,7 @@ $j(function () {
 				'</div>'
 		});
 	$j('#active_countdown').countdown({
-		until: +{{ page.moneybomb.seconds_left }}, 
+		until: +{{ page.moneybomb.seconds_left }},
 		format: 'YDHMS',
 		layout: '<div id="t7_timer">'+
 					'<div id="t7_vals">'+
@@ -281,6 +280,6 @@ $j(function () {
 					'</div>'+
 					'<div id="t7_timer_over"></div>'+
 				'</div>'
-		});		
+		});
 });
 </script>

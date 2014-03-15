@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -36,7 +35,7 @@
 	  {% else %}
 		  {{ page.event.local_start_at | event_time }}
 		{% endif %}
-	</div>		
+	</div>
 	</div>
 
 	{% if page.event.has_venue? %}
@@ -91,16 +90,16 @@
 		<div class="padtop padbottom one_column">
 
 	  {% if page.event.is_maximum_capacity? %}
-    
+
 	    <div class="padtop">Sorry, this event is sold out.</div>
-    
+
 	  {% else %}
 
 	  	{% form_for order %}
-	
+
 	  	  <div class="form_wrap">
 	  		<div class="form">
-  		  
+
 	  		  <div class="padtopmore">
 	  		    <h4>Will you come?</h4>
 	  		  </div>
@@ -113,40 +112,40 @@
 	  			  		{{ ticket_level.description }}
 	  			  	{% endif %}
 	  				</p>
-		
+
 	  			{% endfor %}
-			
+
 	  			{% if page.event.is_hosts? or request.current_recruiter %}
 	  				<p><label for="order_recruiter_id">Did a host refer you?</label></p>
 	  				<select name="order[recruiter_id]">
 	  				<option value="">No</option>
 						{% if request.current_recruiter %}
 						  <option value="{{ request.current_recruiter.id }}" selected>{{ request.current_recruiter.published_name }}</option>
-						{% endif %}  				
+						{% endif %}
 	  				{% for host in page.event.hosts %}
 	  					<option value="{{ host.signup_id }}">{{ host.name }}</option>
 	  				{% endfor %}
 	  				</select>
-	  			{% endif %}				
-			
+	  			{% endif %}
+
 	  			<div class="padtop">
-	  			  {% submit_tag "Purchase tickets", class:"submit-button" %}			
+	  			  {% submit_tag "Purchase tickets", class:"submit-button" %}
 	  			  <div class="form_submit"></div>
 	  			</div>
-		
+
 	  		</div>
-  		
+
 	  	{% endform_for %}
-  
+
 	  {% endif %}
-	
+
 		</div>
 		</div>
 
 	{% else %}
 
 	  {% if page.event.is_user_ticket_required? %}
-  
+
       <div class="event_detail">
 	    <div class="subhead">TICKETS</div>
 	    <div class="subtext">
@@ -156,18 +155,18 @@
 	      {% endif %}
 	    </div>
 	    </div>
-    
+
 	  {% elsif page.event.has_user_ticket_purchase_url? %}
-  
+
       <div class="event_detail">
 	    <div class="subhead">TICKETS</div>
 	    <div class="subtext">
         <a href="{{ page.event.user_ticket_purchase_url }}">FREE</a>
 	    </div>
 	    </div>
-  
+
 	  {% endif %}
-  
+
 	  {% if page.event.show_guests? and page.event.rsvps_count > 0 %}
 	  <div class="subhead">{{ page.event.rsvps_count | number_with_commas }} RSVP{% if page.event.rsvps_count > 1 %}S{% endif %}</div>
 	  <div class="subtext">
@@ -178,14 +177,14 @@
 	  {% endif %}
 
 		{% if page.event.is_rsvped? %}
-	
+
 			<div class="padtop one_column">
-	
+
 				{% form_for event_rsvp %}
-			
+
 				  <div class="form_wrap">
 					<div class="form">
-				  
+
 					  <div class="padtopmore">
 					    {% if page.event.current_rsvp.is_canceled? %}
 					      <h3>Your RSVP was canceled.</h3>
@@ -193,7 +192,7 @@
 	              <h3>Thank you for rsvp'ing.  We'll see you there!</h3>
 					    {% endif %}
 	          </div>
-          
+
 	          {% if request.sorta_logged_in? and request.logged_in? == false %}
 
 	      	    <div class="text-content">
@@ -201,68 +200,68 @@
 	      	    </div>
 
 	          {% endif %}
-          
+
 	          {% if page.event.current_rsvp.is_canceled? %}
 
 	            <div class="padtop">
 	              <a href="{{ page.event.uncancel_rsvp_url }}">Oops, nevermind!  I really do want to come.</a>
 	            </div>
-          
+
 	          {% else %}
-          
+
 	            {% if page.event.allow_guests? %}
-          
+
 	    					<div class="form_errors">{% error_messages_for event_rsvp %}</div>
-			
+
 	    			    {% if page.event.allow_guests? and page.event.current_rsvp.is_canceled? == false %}
-  			    
+
 	      					<p><label for="event_rsvp_guests_count">Change the number of guests you're bringing</label><br/>{% text_field "guests_count", class:"text" %}</p>
-    				
+
 	      				{% endif %}
-  					
+
 	      				<p><label for="event_rsvp_is_canceled">{% check_box "is_canceled", class:"checkbox" %} Cancel, I'm not coming. </label></p>
-  					
+
 	      				<div class="padtop">
 
 	                {% submit_tag "Update RSVP", class:"submit-button" %} &nbsp;
-						
+
 	    						<div class="form_submit"></div>
-						
+
 	      				</div>
-  				
+
 	    				{% else %}
-  				
+
 	      				<div class="destroy_link padtop">
 	    						{{ page.event.current_rsvp | delete_link message: "Cancel RSVP" }}
 	    					</div>
-					
+
 	  					{% endif %}
-					
+
 						{% endif %}
-					
+
 					</div>
 					</div>
 
 				{% endform_for %}
 			</div>
-	
+
 		{% elsif page.event.accept_rsvps?  %}
-	
+
 			<div class="padtop padbottom one_column">
 
 		    {% if page.event.is_maximum_capacity? %}
-	    
+
 		      <div class="padbottom">
 		        Sorry, this event is sold out.
 		      </div>
-	    
+
 		    {% else %}
-	
+
 	  			{% form_for event_rsvp %}
-		
+
 	  		    <div class="form_wrap">
 	  				<div class="form">
-	
+
 		          {% if request.sorta_logged_in? %}
 
 	              <div class="padtopmore text-content">
@@ -282,10 +281,10 @@
 	              </div>
 
 	            {% endif %}
-	
+
 	  					<div class="form_errors">{% error_messages_for event_rsvp %}</div>
-		
-		
+
+
 			        <table>
 			        {% if request.sorta_logged_in? == false or request.current_signup.has_name? == false %}
 			          <tr height="10"></tr>
@@ -293,7 +292,7 @@
 								<tr height="10"></tr>
 	  							<tr><td><label for="event_rsvp_last_name">Last Name</label><br>{% text_field "last_name", class:"text" %}</td></tr>
 	  					{% endif %}
-  					
+
 	  					{% if request.sorta_logged_in? == false %}
 	        		  <tr height="10"></tr>
 	        		  	<tr><td><label for="event_rsvp_email">Email</label><br>{% email_field "email", class:"text", type:"email" %}</td></tr>
@@ -308,7 +307,7 @@
 	        		    	<tr><td><label for="event_rsvp_mobile_opt_in">{% check_box "mobile_opt_in", class:"checkbox" %} Send me text messages</td></tr>
 									{% endif %}
 	        		{% endif %}
-  					
+
 	  					{% if page.event.is_phone? %}
 							<tr height="10"></tr>
 	  						<tr><td><label for="event_rsvp_phone_number">Phone</label><br>{% phone_field "phone_number", class:"text" %}</td></tr>
@@ -370,7 +369,7 @@
 								<tr height="10"></tr>
 								<tr><td>{% submit_tag "Send RSVP", class:"submit-button" %}</td></tr>
 							</table>
-  					  
+
 	  					  {% if page.event.is_user_ticket_required? %}
 	                <div class="padtopmore">
 	                  NOTE: After RSVP, you will still need to purchase a ticket
@@ -379,10 +378,10 @@
 	                  {% endif %}
 	                </div>
 	              {% endif %}
-  					  
+
 	  					  <div class="form_submit"></div>
 	  					</div>
-	
+
 	  			{% endform_for %}
 
 					{% if page.text_keyword_instructions.size > 0 %}
@@ -390,18 +389,18 @@
 							or {{ page.text_keyword_instructions }}
 						</div>
 					{% endif %}
-	
+
 	  		</div>
 	  		</div>
-  		
+
 	  	{% endif %}
-		
+
 		{% endif %}
-	
+
 	{% endif %}
-	
+
 	</div>
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
@@ -410,12 +409,12 @@
 
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
+			</div> <!-- end content_container -->
 	{% endif %}
-	
+
 	</div>
 </div>

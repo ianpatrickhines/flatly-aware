@@ -1,6 +1,5 @@
 {% if page.is_homepage? %}
 
-{% include "breadcrumbs" %}
 
 <div class="row-fluid" style="margin-top: -5px; margin-bottom: 39px;">
 {% comment %}<div class="span4">
@@ -14,7 +13,7 @@
 <a class="button supporter-nav-button" href="{{ site.button2_page.full_url_with_profile_recruiter }}">{{ site.button2_text }}</a>
 {% endif %}
 </div>
-  
+
   <div class="span4">
   {% if site.has_button3? %}
 <a class="button supporter-nav-button" href="{{ site.button3_page.full_url_with_profile_recruiter }}">{{ site.button3_text }}</a>
@@ -41,8 +40,8 @@
       {{ page.basic.content }}
     </div>
   </div>{% endcomment %}
- 
-  
+
+
   {% subpage "blog" with "blog_latest" %}
 
   {% if page.tags_count > 0 %}
@@ -75,7 +74,6 @@
 
 {% else %}
 
-{% include "breadcrumbs" %}
 
 {% if page.headline.size > 0 %}
 <h2 class="headline">{{ page.headline }}</h2>

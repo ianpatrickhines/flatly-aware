@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 <div class="content_container">
 
@@ -15,14 +14,14 @@
 	<div class="supporter_pc_balance_bg">
 
 	<div style="float: left;">
-  
+
 	  {{ "fugue-jar-open" | icon }} <b>Balance</b>
 	  <div class="padtopless"><span class="pc" id="pc_big">{{ request.current_signup.capital_amount_format }}</span></div>
 
 	</div>
 
 	<div style="float: right;">
-  
+
 	  <div style="float: left; padding-right: 15px;">
 	  {{ "fugue-jar--plus" | icon }} <b>Earned</b>
 	  <div class="padtopless"><span class="pc" id="pc_earned_big">{{ request.current_signup.received_capital_amount_format }}</span></div>
@@ -69,7 +68,7 @@
 	    <tr height="5"></tr>
 	  {% endfor %}
 	  </table>
-	  <!-- ledger table ends --> 
+	  <!-- ledger table ends -->
 
 	    {{ request.current_signup.capitals | paginate }}
 	  </div>

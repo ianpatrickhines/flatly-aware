@@ -1,6 +1,5 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -25,13 +24,13 @@
 	    {{ page.question.content }}
 	  </div>
 	{% endif %}
-	
+
 	{% if page.question.answer.size > 0 %}
-	<div class="answer"> 
+	<div class="answer">
 		<div class="answer_a">Answer</div><div class="answer_wrap">{{ page.question.answer }}</div>
 	</div>
 	{% endif %}
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
@@ -46,13 +45,13 @@
 	</div>
 
 	</div>
-	
+
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
-	{% endif %}	
+			</div> <!-- end content_container -->
+	{% endif %}
 </div>

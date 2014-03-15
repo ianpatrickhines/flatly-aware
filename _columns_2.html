@@ -4,6 +4,8 @@
 
     {{ content_for_notifications }}
 
+    {% include "breadcrumbs" %}
+
     {% if page.features_count > 0 and page.slug != "home" %}
     <div class="features-container">
      {% include "features" %}

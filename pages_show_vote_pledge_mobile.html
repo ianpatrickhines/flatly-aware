@@ -1,6 +1,6 @@
 <div class="padcontainer">
 
-{% include "breadcrumbs" %}
+
 
 {% if page.show_stream? %}
 	{% if page.public_activities_count > 0 or page.is_commentable? %}
@@ -19,7 +19,7 @@
 {% endif %}
 
 <div id="content">
-	
+
 	{% if page.vote_pledge.content.size > 0 %}
 		<div id="intro">
 			{{ page.vote_pledge.content }}
@@ -47,21 +47,21 @@
 	      <div class="horizontalgoal">GOAL: {{ page.vote_pledge.yes_goal | number_with_commas }} votes</div>
 	{% elsif page.vote_pledge.yes_votes_count > 4 %}
 		<div class="padbottom">
-	  <div class="horizontalgoal">{{ page.vote_pledge.yes_votes_count | number_with_commas }} votes</div>         
+	  <div class="horizontalgoal">{{ page.vote_pledge.yes_votes_count | number_with_commas }} votes</div>
 		</div>
 	{% endif %}
 
 	{% if page.vote_pledge.is_pledged? %}
-	
+
 		<div class="padtopless one_column">
-		
+
 			<h3>You
 	  		{% if page.vote_pledge.current_vote_pledge.is_no? %}
-	  		  pledged not 
+	  		  pledged not
 	  		{% elsif page.vote_pledge.current_vote_pledge.is_unsure? %}
-	  		  said you were not sure whether 
+	  		  said you were not sure whether
 	  		{% elsif page.vote_pledge.current_vote_pledge.is_yes? %}
-	  		  pledged 
+	  		  pledged
 	  		{% endif %}
 	  		to
 	  		{% if page.vote_pledge.current_vote_pledge.could_vote? %}
@@ -71,40 +71,40 @@
 	  		{% endif %}
 	  		{{ site.candidate_first_name_or_site_name }}.
 			</h3>
-		
+
 			<div class="destroy_link padtop">
 				{{ page.vote_pledge.current_vote_pledge | delete_link message: "Remove pledge" }}
 			</div>
-			
+
 
 		</div>
-	
+
 	{% else %}
-	
+
 		<div class="padtop padbttommore one_column">
 
 		    <div class="form_wrap">
 				<div class="form">
-    	  
+
 	    	  <div id="vote_pledge_form">
-			
+
 				<div class="padtopmore">
 	  		    <span class="green_link"><a href="{{ page.vote_pledge.yes_url }}" class="get">Yes</a></span><span style="font-size: 1.6em;"> I support {{ site.candidate_first_name_or_site_name }}.</span>
-			
+
 				<div class="padtop padbottom"></div>
-				
+
 	  		    <span class="blue_link"><a href="{{ page.vote_pledge.unsure_url }}" class="get">I might</a></span> <span style="font-size: 1.2em;">support {{ site.candidate_first_name_or_site_name }}, <a href="{{ site.full_url}}">tell me more</a>.</span>
 
 				<div class="padtop padbottom"></div>
 
 	  		    <span class="destroy_link"><a href="{{ page.vote_pledge.no_url }}" class="get">No</a></span> <span style="font-size: 1.2em"> I do not support {{ site.candidate_first_name_or_site_name }}.</span>
 				</div>
-			
+
 			    </div>
-		
+
 				</div>
-				
-				
+
+
 				{% if page.text_keyword_instructions.size > 0 %}
 					<div class="padbottom padtopmore">
 						or {{ page.text_keyword_instructions }}
@@ -113,15 +113,15 @@
 
 		</div>
 		</div>
-	
+
 	{% endif %}
-	
+
 	{% if page.tags_count > 0 %}
 		<div id="page_tags">
 			{% include "page_tags" with page %}
 		</div>
 	{% endif %}
-	
+
 	<div class="padbottom padtop">
 		<div id="like_page">
 			<b>Like this to spread the word</b>
@@ -130,13 +130,13 @@
 	</div>
 
 	</div>
-	
+
 	{% if page.show_stream? %}
 		{% if page.public_activities_count > 0 or page.is_commentable? %}
-			</div> <!-- end content_container_top -->	
+			</div> <!-- end content_container_top -->
 		{% endif %}
 	  {% include "page_stream" %}
 		{% else %}
-			</div> <!-- end content_container -->	
-	{% endif %}	
+			</div> <!-- end content_container -->
+	{% endif %}
 </div>
