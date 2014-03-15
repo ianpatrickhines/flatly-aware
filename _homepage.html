@@ -1,0 +1,36 @@
+<div class="hero">
+  {% include "features" %}
+</div>
+<div class="dark-color-background section">
+  {% if request.logged_in? or request.sorta_logged_in? %}
+  {% subpage "homepage_call_to_action" with "homepage_cta" %}
+  {% else %}
+  {% subpage "homepage_signup" with "homepage_signup_form" %}
+  {% endif %}
+</div>
+<div class="width-container section">
+  <div class="row-fluid">
+    <div class="span12">
+      <h2 class="center padbottommore">
+        {{ site.subheadline }}
+      </h2>
+    </div>
+  </div>
+  <div class="row-fluid services-overview">
+    {% subpage "homepage_section_1" with "homepage_feature" %}
+
+    {% subpage "homepage_section_2" with "homepage_feature" %}
+
+    {% subpage "homepage_section_3" with "homepage_feature" %}
+  </div>
+  <div class="row-fluid learn-more">
+    <div class="span3">&nbsp;</div>
+    <div class="span3 center" id="facebook-share">
+      {% subpage "get_started" with "learn_more_button" %}
+    </div>
+    <div class="span3 center" id="twitter-share">
+      {% subpage "learn_more" with "learn_more_button" %}
+    </div>
+    <div class="span3">&nbsp;</div>
+  </div>
+</div>

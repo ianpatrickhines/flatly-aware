@@ -1,0 +1,26 @@
+#page-home .page-features {
+  margin-top: 0;
+}
+
+#page-home #signup-form input#signup_email,
+#page-home #signup-form input#signup_submitted_address,
+#page-home #signup-form input.submit-button {
+    width: 100%;
+  }
+
+@media only screen and (min-width : 768px) {
+
+  #page-home #signup-form input#signup_email {
+    width: 20rem;
+    margin-right: 1rem;
+  }
+
+  #page-home #signup-form input#signup_submitted_address {
+    width: 10rem;
+    margin-right: 1rem;
+  }
+
+  #page-home #signup-form input.submit-button {
+    max-width: 10rem;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="width-container">
+  <div class="row-fluid">
+    <div class="span12 center">
+      <h2 class="padbottom">
+        {{ page.headline }}
+      </h2>
+        {{ page.signup.content }}
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12 center" id="signup-form">
+      {% if request.logged_in? or request.sorta_logged_in? %}
+      {% else %}
+      <div class="email-signup form">
+        {% form_for signup %}
+        {% hidden_field_tag "page_id", page.id %}
+        <div class="form-errors">{% error_messages_for signup %}</div>
+        {% email_field "email", class:"text", placeholder:"Email address", required: "required" %} {% text_field "submitted_address", class:"text", placeholder:"Zip Code" %} {% submit_tag "Learn more", class:"submit-button" %}
+        <div class="form-submit"></div>
+        {% endform_for %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

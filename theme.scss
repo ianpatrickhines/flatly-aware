@@ -5,62 +5,8 @@
 
 //* style variables *//
 
-// headline font
-$headline-font: "Avenir Next", Helvetica, sans-serif;
-
-// main font
-$font: "Avenir Next", Helvetica, sans-serif;
-
-// flat ui colors
-$turquoise: #1abc9c;
-$turquoise-active: #33d1ac;
-$green-sea: #16a085;
-
-$emerald: #2ecc71;
-$nephritis: #27ae60;
-
-$peter-river: #3498db;
-$belize-hole: #2980b9;
-
-$amethyst: #9b59b6;
-$wisteria: #8e44ad;
-
-$wet-asphalt: #34495e;
-$midnight-blue: #2c3e50;
-
-$sun-flower: #f1c40f;
-$orange: #f39c12;
-
-$carrot: #e67e22;
-$pumpkin: #d35400;
-
-$alizarin: #e74c3c;
-$pomegranate: #c0392b;
-
-$clouds: #ecf0f1;
-$silver: #bdc3c7;
-
-$concrete: #95a5a6;
-$asbestos: #7f8c8d;
-
-// Theme colors
-
-$light-color: $silver;
-$dark-color: $asbestos;
-
-$theme-color-1: $dark-color;
-$theme-color-2: $dark-color;
-$theme-color-3: $light-color;
-$theme-color-4: $dark-color;
-$theme-color-6: #feffff; // white
-$theme-color-7: $clouds;
-
-// form input area focus color
-$theme-color-5: rgba(52, 152, 219, 0.6);
-
-// general success and error colors
-$red: $pomegranate;
-$green: $emerald;
+@import "colors";
+@import "fonts";
 
 // background images
 $background-texture: "";
@@ -106,6 +52,9 @@ $header-color: $dark-color;
 
 // format user submitted code in comments
 @import "code_ray";
+
+// hoempage styles
+@import "homepage_styles";
 
 // applies border-box to all elements
 
@@ -219,6 +168,11 @@ body {
   background: none !important;
 }
 
+.dark-color-background {
+  background-color: $dark-color;
+  color: white;
+}
+
 .center {
   text-align: center;
 }
@@ -255,6 +209,11 @@ iframe[src *= 'youtube'] {
 
 .fb-like-box iframe {
   display: block;
+}
+
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 // message asking people to check their email to activate account
@@ -356,7 +315,7 @@ iframe[src *= 'youtube'] {
 
 .title {
   color: #fff;
-  font-weight: normal;  
+  font-weight: normal;
   a {
     color: #fff;
   }
@@ -585,7 +544,7 @@ nav {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     -webkit-appearance: none;
-    width: 73%; 
+    width: 73%;
     @include border-radius-top-right(0px);
     @include border-radius-bottom-right(0px);
     border-right: 0;
@@ -668,7 +627,7 @@ ul#page-stream {
   li.activity  {
     span + a {
     display: block;
-    } 
+    }
   }
   .activity-time {
     display: block;
@@ -1685,14 +1644,15 @@ h4.expander-head {
   .features-headline {
     position: absolute;
     left: 0;
-    bottom: 0;
+    top: 36%;
     z-index: 2;
     background: #333;
     width: 100%;
-    font-size: 14px;
-    color: #fff;
-    padding: 5px;
-    display: block;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2rem 0;
     color: #fff;
     /* Fallback for web browsers that doesn't support RGBa */
     background: rgb(0, 0, 0) transparent;

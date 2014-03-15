@@ -33,7 +33,7 @@
   </script>
 
 </head>
-<body class="aware-theme v2-theme {{ page.page_class_name }} js">
+<body class="aware-theme v2-theme {{ page.page_class_name }} js" id="page-{{ page.slug }}">
   <div id="pattern" class="pattern">
     <div class="wrap" id="wrap">
       <div id="body" class="page-{{ request.template | replace: '_', '-' }}">
@@ -64,13 +64,16 @@
         </div>
         {% endif %}
 
-        {% if page.features_count > 0 %}
+        {% if page.features_count > 0 and page.slug != "home" %}
           <div class="width-container">
            {% include "features" %}
           </div>
         {% endif %}
 
         <div class="main-container" id="middle">
+          {% if page.slug == "home" %}
+          {% yield %}
+          {% else %}
           <div class="main width-container clearfix">
 
             {% if request.is_sidebar? %}
@@ -80,6 +83,7 @@
             {% endif %}
 
           </div>
+          {% endif %}
           <!-- .main -->
         </div>
         <!-- .main-container -->
@@ -116,7 +120,7 @@
                 <div class="nationbuilder-logo desktop-visible">
                   <a href="http://www.ianpatrickhines.com?recruiter_id=86995" title="Design by Ian Patrick Hines" class="iph-logo">
                     <img src="iph_black.png" alt="Design by Ian Patrick Hines"/>
-                  </a>    
+                  </a>
                   +
                   <a href="http://nationbuilder.com" title="Created with NationBuilder" class="nb-logo">
                     <img src="nb_logo_black.png" alt="Created with NationBuilder"/>
@@ -125,7 +129,7 @@
                 <div class="nationbuilder-logo mobile-visible text-center padbottommore">
                   <a href="http://www.ianpatrickhines.com?recruiter_id=86995" title="Design by Ian Patrick Hines" class="iph-logo">
                     <img src="iph_black.png" alt="Design by Ian Patrick Hines"/>
-                  </a>    
+                  </a>
                   +
                   <a href="http://nationbuilder.com" title="Created with NationBuilder" class="nb-logo">
                     <img src="nb_logo_black.png" alt="Created with NationBuilder"/>
